@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .d_hover:hover {
+color: #494949 !important;
+border-radius: 50px;
+border-color: #494949 !important;
+transition: all 0.3s ease 0s;
+}
+        </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SimpleAdd</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" charset="utf-8"></script>
+
+</head>
+
+<body style="background-color: #dfe3ec ">
+
+  <form onsubmit="return adddata()">
+    Enter 1st number between 5-25<br>
+    <input type="number" id="test1" name="num" pattern="[5-9]|1[0-9]|2[0-5]" required min="5" max="25"><br/>
+    Enter 2nd number between 5-25<br>
+    <input type="number" id="test2" name="num" pattern="[5-9]|1[0-9]|2[0-5]" required min="5" max="25"><br/>
+    Enter 3rd number between 5-25<br>
+    <input type="number" id="test3" name="num" pattern="[5-9]|1[0-9]|2[0-5]" required min="5" max="25"><br/>
+    Enter 4th number between 5-25<br>
+    <input type="number" id="test4" name="num" pattern="[5-9]|1[0-9]|2[0-5]" required min="5" max="25"><br/>
+    Enter 5th number between 5-25<br>
+    <input type="number" id="test5" name="num" pattern="[5-9]|1[0-9]|2[0-5]" required min="5" max="25"><br/>
+    <input type="submit" value="PlotGraph"><br/>
+  </form>
+
+  <canvas id="myChart"></canvas>
+  <script type="text/javascript">
+
+
+    var ctx = document.getElementById("myChart").getContext('2d');
+
+    function adddata() {
+      let test1 = document.getElementById("test1").value;
+      let test2 = document.getElementById("test2").value;
+      let test3 = document.getElementById("test3").value;
+      let test4 = document.getElementById("test4").value;
+      let test5 = document.getElementById("test5").value;
+      
+
+    
+      myChart.data.datasets[0].data[0] = test1;
+      myChart.data.datasets[0].data[1] = test2;
+      myChart.data.datasets[0].data[2] = test3;
+      myChart.data.datasets[0].data[3] = test4;
+      myChart.data.datasets[0].data[4] = test5;
+     
+      myChart.update();
+      return false;
+    }
+
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["Purple","Pink","Blue","Yellow","Orange"],
+        datasets: [{
+          label: 'Numbers',
+          data: [test1,test2,test3,test4,test5],
+          backgroundColor: [
+            'rgba(140, 159, 202, 0.87)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(21, 29, 45, 0.87)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
